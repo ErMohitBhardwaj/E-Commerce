@@ -2,10 +2,7 @@ package com.bikkadit.ecommerce.entity;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.UUID;
 @Getter
 @Setter
@@ -17,10 +14,10 @@ import java.util.UUID;
 public class User {
 
     @Id
-    private String userId;
+    private String userId= UUID.randomUUID().toString();
     @Column(name="user_name", length = 20, nullable = false)
     private String name;
-    @Column(name="user_email", unique = true)
+    @Column(name="user_email")
     private String email;
     @Column(name="user_password", length=10, nullable = false)
     private String password;
@@ -28,6 +25,8 @@ public class User {
     private String gender;
     @Column(name="about_user",length=100)
     private String about;
+    @Column(name="user_image_name")
+    private String imageName;
 
 
 
