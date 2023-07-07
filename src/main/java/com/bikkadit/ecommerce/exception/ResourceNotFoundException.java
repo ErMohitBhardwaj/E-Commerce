@@ -1,11 +1,8 @@
 package com.bikkadit.ecommerce.exception;
 
-import com.bikkadit.ecommerce.dto.ApiResponse;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.http.ResponseEntity;
 
 @Getter
 @Setter

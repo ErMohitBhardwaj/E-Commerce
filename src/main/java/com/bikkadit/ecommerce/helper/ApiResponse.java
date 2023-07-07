@@ -1,4 +1,4 @@
-package com.bikkadit.ecommerce.dto;
+package com.bikkadit.ecommerce.helper;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
