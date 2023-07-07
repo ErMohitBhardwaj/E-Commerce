@@ -15,15 +15,15 @@ public class User {
 
     @Id
     private String userId;
-    @Column(name="user_name", length = 20, nullable = false)
+    @Column(name="user_name")
     private String name;
     @Column(name="user_email")
     private String email;
-    @Column(name="user_password", length=10, nullable = false)
+    @Column(name="user_password")
     private String password;
-    @Column(name="gender", length=6,nullable = false)
+    @Column(name="gender")
     private String gender;
-    @Column(name="about_user",length=100)
+    @Column(name="about_user")
     private String about;
     @Column(name="user_image_name")
     private String imageName;
