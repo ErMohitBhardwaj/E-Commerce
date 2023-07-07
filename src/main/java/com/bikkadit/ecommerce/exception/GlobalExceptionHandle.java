@@ -1,6 +1,6 @@
 package com.bikkadit.ecommerce.exception;
 
-import com.bikkadit.ecommerce.dto.ApiResponse;
+import com.bikkadit.ecommerce.helper.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
