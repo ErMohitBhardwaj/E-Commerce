@@ -1,7 +1,8 @@
 package com.bikkadit.ecommerce.controller;
 
-import com.bikkadit.ecommerce.dto.ApiResponse;
+import com.bikkadit.ecommerce.helper.ApiResponse;
 import com.bikkadit.ecommerce.dto.UserDto;
+import com.bikkadit.ecommerce.helper.AppConstant;
 import com.bikkadit.ecommerce.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Slf4j
@@ -26,7 +28,7 @@ public class UserController {
      * @return UserDto,Status
      */
     @PostMapping("/")
-    ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto){
+    ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto userDto){
         log.info("Request initiated for User Service to Create new User.");
        UserDto userDto1= this.userService.createUser(userDto);
        log.info("Request Completed for User Service to Create New User.");
@@ -41,7 +43,7 @@ public class UserController {
      * @return UserDto,Status Code
      */
     @PutMapping("/")
-    ResponseEntity<UserDto> updateUser(@PathVariable String email, @RequestBody UserDto userDto){
+    ResponseEntity<UserDto> updateUser(@PathVariable String email,@Valid @RequestBody UserDto userDto){
         log.info("Request initiated for User Service to Update User with email id {}",email);
        UserDto userDto1 = this.userService.updateUser(email,userDto);
        log.info("Request Completed for User Service to Update User with email id {}",email);
@@ -85,7 +87,7 @@ public class UserController {
      * @param password
      * @return user by email and password, Status code
      */
-    @GetMapping("/emailandpassword/{email}/{password}")
+    @GetMapping("/email/{email}/password/{password}")
     ResponseEntity<UserDto> getUserByEmailAndPassword(@PathVariable String email,@PathVariable String password){
         log.info("Request initiated for User Service to get User with email id {} and Password {}",email,password);
         UserDto userDto1 = this.userService.getUserByUsernamePassword(email,password);
@@ -99,7 +101,7 @@ public class UserController {
      * @apiNote get all user
      * @return all User
      */
-    @GetMapping("/allusers")
+    @GetMapping("/allUsers")
     ResponseEntity<List<UserDto>> getAllUser(){
         log.info("Request initiated for User Service to get all User.");
         List<UserDto> userDto1 = this.userService.getAllUsers();
@@ -119,7 +121,7 @@ public class UserController {
         log.info("Request initiated for User Service to delete User by email id {}.",email);
          this.userService.deleteUserByEmail(email);
         log.info("Request completed for User Service to delete User by email id {}.",email);
-        return new ResponseEntity<ApiResponse>(new ApiResponse("User deleted Successfully",true,HttpStatus.OK),HttpStatus.OK);
+        return new ResponseEntity<ApiResponse>(new ApiResponse(AppConstant.USER_DELETED,true,HttpStatus.OK),HttpStatus.OK);
 
     }
 
