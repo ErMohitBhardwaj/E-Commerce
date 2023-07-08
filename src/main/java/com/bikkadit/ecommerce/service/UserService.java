@@ -20,6 +20,6 @@ public interface UserService {
 
     boolean deleteUserByEmail(String email);
 
-
+    List<UserDto> findByNameContaining(String keywords);
 
 }
