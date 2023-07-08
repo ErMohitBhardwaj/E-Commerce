@@ -32,7 +32,7 @@ public class UserController {
         log.info("Request initiated for User Service to Create new User.");
        UserDto userDto1= this.userService.createUser(userDto);
        log.info("Request Completed for User Service to Create New User.");
-       return new ResponseEntity<UserDto>(userDto, HttpStatus.CREATED);
+       return new ResponseEntity<UserDto>(userDto1, HttpStatus.CREATED);
     }
 
     /**
@@ -42,7 +42,7 @@ public class UserController {
      * @param userDto
      * @return UserDto,Status Code
      */
-    @PutMapping("/")
+    @PutMapping("/{email}")
     ResponseEntity<UserDto> updateUser(@PathVariable String email,@Valid @RequestBody UserDto userDto){
         log.info("Request initiated for User Service to Update User with email id {}",email);
        UserDto userDto1 = this.userService.updateUser(email,userDto);
@@ -125,6 +125,19 @@ public class UserController {
 
     }
 
+    /**
+     * @auther Mohit
+     * @apiNote Search User
+     * @param keyword
+     * @return List of Users
+     */
+    @GetMapping("/search/{keyword}")
+    ResponseEntity<List<UserDto>> findUserNameContains(@PathVariable String keyword){
+        log.info("Request initiated for User Service to get all User whose name contains{}.",keyword);
+        List<UserDto> userDto1 = this.userService.getAllUsers();
+        log.info("Request Completed for User Service to get all User whose name contains{}.",keyword);
+        return new ResponseEntity<List<UserDto>>(userDto1,HttpStatus.OK);
+    }
 
 
 

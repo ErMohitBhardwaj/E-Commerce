@@ -96,4 +96,13 @@ public class UserServiceImpl implements UserService {
         }
         return false;
     }
+
+    @Override
+    public List<UserDto> findByNameContaining(String keyword) {
+        List<User> users=this.userRepository.findByNameContaining(keyword);
+        List<UserDto> userDto =users.stream().map((user)-> this.modelMapper.map(user,UserDto.class)).collect(Collectors.toList());
+        return userDto;
+    }
+
+
 }
